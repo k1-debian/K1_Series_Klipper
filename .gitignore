@@ -1,6 +1,6 @@
 .history
 out
-#*.so
+klippy/chelper/*.so
 *.pyc
 .config
 .config.old
