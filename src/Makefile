@@ -2,7 +2,10 @@
 
 src-y += sched.c command.c basecmd.c debugcmds.c fan_check.c
 src-$(CONFIG_HAVE_GPIO) += initial_pins.c gpiocmds.c stepper.c endstop.c \
-    trsync.c prtouch_v2_compile.c
+    trsync.c
+ifeq ($(or $(CONFIG_MACH_GD32F30X),$(CONFIG_MACH_GD32E23X)),y)
+    src-$(CONFIG_HAVE_GPIO) += prtouch_v2_compile.c
+endif
 src-$(CONFIG_HAVE_PRTOUCH) += hx711s.c dirzctl.c
 src-$(CONFIG_HAVE_GPIO_ADC) += adccmds.c
 src-$(CONFIG_HAVE_GPIO_SPI) += spicmds.c thermocouple.c
