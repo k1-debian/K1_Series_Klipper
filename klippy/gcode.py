@@ -114,8 +114,8 @@ class GCodeDispatch:
             func = getattr(self, 'cmd_' + cmd)
             desc = getattr(self, 'cmd_' + cmd + '_help', None)
             self.register_command(cmd, func, True, desc)
-        self.last_temperature_info = "/usr/data/creality/userdata/config/temperature_info.json"
-        self.exclude_object_info = "/usr/data/creality/userdata/config/exclude_object_info.json"
+        self.last_temperature_info = "/home/printer/printer_data/config/creality/temperature_info.json"
+        self.exclude_object_info = "/home/printer/printer_data/config/creality/exclude_object_info.json"
     def is_traditional_gcode(self, cmd):
         # A "traditional" g-code command is a letter and followed by a number
         try:

@@ -47,11 +47,11 @@ class VirtualSD:
         self.do_resume_status = False
         self.eepromWriteCount = 1
         self.fan_state = {}
-        self.gcode_layer_path = "/usr/data/creality/userdata/config/gcode_layer.json"
-        self.user_print_refer_path = "/usr/data/creality/userdata/config/user_print_refer.json"
-        self.print_file_name_path = "/usr/data/creality/userdata/config/print_file_name.json"
-        self.speed_mode_path = "/usr/data/creality/userdata/config/speed_mode.json"
-        self.flow_rate_path = "/usr/data/creality/userdata/config/flow_rate.json"
+        self.gcode_layer_path = "/home/printer/printer_data/config/creality/gcode_layer.json"
+        self.user_print_refer_path = "/home/printer/printer_data/config/creality/user_print_refer.json"
+        self.print_file_name_path = "/home/printer/printer_data/config/creality/print_file_name.json"
+        self.speed_mode_path = "/home/printer/printer_data/config/creality/speed_mode.json"
+        self.flow_rate_path = "/home/printer/printer_data/config/creality/flow_rate.json"
         self.print_first_layer = False
         self.first_layer_stop = False
         self.count_M204 = 0
@@ -470,12 +470,12 @@ class VirtualSD:
                 os.remove(self.gcode_layer_path)
         return layer
 
-    def get_print_file_metadata(self, filename, filepath="/usr/data/printer_data/gcodes"):
+    def get_print_file_metadata(self, filename, filepath="/home/printer/printer_data/gcodes"):
         from subprocess import check_output
         result = {}
-        python_env = "/usr/share/klippy-env/bin/python3"
+        python_env = "/home/printer/klippy-env/bin/python3"
         # -f gcode filename  -p gcode file dir
-        cmd = "%s /usr/share/klipper/klippy/extras/metadata.py -f '%s' -p %s" % (python_env, filename, filepath)
+        cmd = "%s /home/printer/klipper/klippy/extras/metadata.py -f '%s' -p %s" % (python_env, filename, filepath)
         try:
             result = json.loads(check_output(cmd, shell=True).decode("utf-8"))
         except Exception as err:
@@ -558,6 +558,7 @@ class VirtualSD:
         self.count_G1 = 0 
         self.eepromWriteCount = 1
         gcode_move = self.printer.lookup_object('gcode_move', None)
+        delay_photography_switch = 1
         try:
             if os.path.exists(self.user_print_refer_path):
                 with open(self.user_print_refer_path, "r") as f:

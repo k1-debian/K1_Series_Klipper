@@ -3,7 +3,7 @@ from subprocess import call
 import json, random, time
 
 def send(msg, data={}):
-    pipeFilePath = "/usr/data/creality/userdata/config/pipe.json"
+    pipeFilePath = "/home/printer/printer_data/config/creality/pipe.json"
     try:
         if not os.path.exists(pipeFilePath):
             call("touch %s" % pipeFilePath, shell=True)

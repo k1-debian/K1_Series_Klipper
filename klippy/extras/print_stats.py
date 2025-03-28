@@ -18,7 +18,7 @@ class PrintStats:
         # G28 down 12mm flag
         self.power_loss = 0
         self.print_duration = 0
-        self.z_pos_filepath = "/usr/data/creality/userdata/config/z_pos.json"
+        self.z_pos_filepath = "/home/printer/printer_data/config/creality/z_pos.json"
         self.z_pos = self.get_z_pos()
     def get_z_pos(self):
         z_pos = 0
