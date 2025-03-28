@@ -558,7 +558,13 @@ class VirtualSD:
         self.count_G1 = 0 
         self.eepromWriteCount = 1
         gcode_move = self.printer.lookup_object('gcode_move', None)
+        
         delay_photography_switch = 1
+        location = 0
+        frame = 15
+        interval = 1
+        power_loss_switch = False
+        
         try:
             if os.path.exists(self.user_print_refer_path):
                 with open(self.user_print_refer_path, "r") as f:
